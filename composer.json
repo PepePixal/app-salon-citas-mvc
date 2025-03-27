@@ -1,0 +1,22 @@
+{
+    "name": "pepe/app-salon_php_mvc_js_sass",
+    "description": "Proyecto PHP 8, SASS, Gulp, SQL, MVC",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "Controllers\\" : "./controllers",
+            "Model\\" : "./models",
+            "Classes\\" : "./classes"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pepe Pixal",
+            "email": "pepepixal@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}

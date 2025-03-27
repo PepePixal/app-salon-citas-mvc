@@ -1,0 +1,90 @@
+/proyecto
+
+	//clases
+		* Email.php - clase con métodos para enviar email con php	
+
+	//controllers
+		* APIController.php - controlador con la clase para la API de servicios
+		* CitaController.php - controlador con la clase para las citas
+		* LoginController.php - controlador con la clase para el login del usuario
+
+	//includes
+		* app.php - 
+		* database.php - conexión a la base datos
+		* funciones.php - nuestras funciones personalizadas
+
+	//models
+		* ActiveRecord.php -  modelo padre del que estienden otros modelos
+		* Servicio.php - modelo para interactuar con la tabla servicios de la DB.
+		* Usuario.php - modelo para interactuar con la tabla usuarios de la DB.
+
+	//public
+		///build
+			///css
+				* app.css - css compilado por gulp
+			///img
+				* imagenes - compilado por gulp
+			///js
+				* app.js - javascrit compilado por gulp
+
+		
+		* index.php - archivo principal con las rutas
+
+	//src
+		///img
+			* imagenes originales
+
+		///js
+			* app.js - javascript original modificable
+
+		///scss
+			////base
+				* _index.scss - índice de archivos .scss de la carpeta /base.
+				* _globales.scss - estilos scss globales.
+				* _mixins.scss - media queries, boton, grid
+				* _normalize.scss - 
+				* _tipografia.scss - estiols tipografías
+				* _variables.scss - variables para estilos
+
+			////componentes
+				* _index.scss - índice de archivos .scss de la carpeta /componentes
+				* _alertas.scss - estilo scss para alertas
+				* _bontones.scss - estilo scss para botones
+				* _enlaces.scss - estilos scss para los enlaces
+				* _formulario.scss - estilo scss para formularios
+				* _paginacion.scss - estilo botones paginación << >>
+				* _tabs.scss - estilo scss para los tabs \views\cita\index.php
+
+			////layout
+				* _citas.scss - estilos para \views\cita\index.php
+				* _index.scss - índice de archivos .scss de la carpeta /layout con @forward
+				* _servicios.scss - estilos para \views\cita\index.php
+
+				* _UI.scss - setilos generales
+
+
+			* app.scss - índice de las carpetas de estilo en scss con @use
+
+	//views
+		* layout.php - vista página inicial, donde se insertan las views
+
+		//auth
+			* confirmar-cuenta.php - vista mensaje confirmación o denegación, nueva cuenta usuario
+			* crear-cuenta.php - vista página formulario crear nueva cuenta
+			* login.php - vista página formulario login
+			* mensaje.php - vista mensaje confirma tu cuenta por email 
+			* olvide-password.php - vista página formulario olvide password
+			* recuperar-password-php - vista página formulario recuperar password
+
+		//cita
+			* cita.php - vista 
+
+		//templates
+			* alertas.php - vista para insertar las alertas de validación,
+
+	* router.php - comprueba la rutas definidas y llama a sus controllers
+
+
+
+
+

@@ -1,0 +1,19 @@
+//importación
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.acciones {
+    margin-top: v.$separacion;
+    @include m.desktop{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    a {
+        display: block;
+        color: v.$blanco;
+        margin-bottom: calc(v.$separacion / 2);
+        text-align: center;
+    }
+
+}

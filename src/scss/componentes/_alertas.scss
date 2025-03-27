@@ -1,0 +1,19 @@
+@use 'base/variables' as v;
+
+.alerta {
+    display: block;
+    padding: calc(v.$separacion / 4);
+    margin-top: 2rem ;
+    width: 100%;
+    color: v.$blanco;
+    text-align: center;
+
+    //si tambien tiene la clase error
+    &.error{
+        background-color: v.$rojo;
+    }
+    //o si tambien tiene la clase exito
+    &.exito{
+        background-color: v.$verde;
+    }
+}

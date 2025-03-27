@@ -1,0 +1,18 @@
+
+.seccion {
+    padding: 3rem 0;
+    //oculta toda la seccion, por defecto
+    display: none;
+
+    .text-center {
+        text-align: center;
+    }
+}
+
+//clases para mostrar y ocultar, con javascript
+.mostrar {
+    display: block;
+}
+.ocultar {
+    display: none;
+}

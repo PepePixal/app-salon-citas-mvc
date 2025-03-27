@@ -1,0 +1,77 @@
+En "Servicios" del sistema, iniciar MySQL80 (servidor MySQL)
+
+Datos para la conexión a la DB MySQL
+usuario: root
+contraseña: root
+
+Base de datos:
+Name: appsalon_mvc
+Encoding: utf8mb4
+Collation: utf8mb4_general_ci
+
+
+
+
+1- Requerimos Instalar node.js que incluye NPM. Si no esta instalado.
+
+2- Ejecutar NPM con: npm init, creará un archivo package.json, si no lo tenemos.
+
+2- Si ya tenemos el package.json, instalar sus dependencias con: npm install
+Se creará automáticamente la carpeta /node_modules y el archivo package-lock.json
+
+3- Para la compilación de SASS .scss a .css usaremos la herramienta gulp.
+ - Si no lo tenemos instalado, lo instalamos con npm: npm i --save-dev gulp
+ - Si ya tenemos un archivo gulpfile.js y en el archivo package.json tenemos
+   "scripts": {
+      "gulp: "gulp"
+   }
+   Ejecutamos gulp con: npx gulp o npm run gulp.
+   Dentro de la carpeta publid, se habrá carpeta build/, dentro de esta las carpetas
+   /img/, /js/ y /css/ y dentro de esta el archivo compilado app.css
+
+4- Los archivos originales modificables de .scss, .js y .jpg están en la carpeta /src/
+
+5- Para las dependencias de php moderno requerimos composer.json. Si tenemos instalado
+   composer lo ejecutamos abriendo un nuevo terminal y con: composer init
+	Package name: intro
+	Description []: Proyecto PHP 8, SASS, Gulp, SQL, MVC
+	Author [Pepe Pixal <pepepixal@gmail.com>, n to skip]: intro
+	Minimum Stability []: intro
+	Package Type (e.g. library, project, metapackage, composer-plugin) []: Project
+	License []: intro
+	Would you like to define your dependencies (require) interactively [yes]? no
+	Would you like to define your dependencies (require) interactively [yes]? no
+	Would you like to define your dev dependencies (require-dev) interactively [yes]? no
+	Add PSR-4 autoload mapping? Maps namespace "Pepe\AppSalonPhpMvcJsSass" to the entered relative path. 	[src/, n to skip]: n
+	Do you confirm generation [yes]? yes
+   Se habrá creado el archivo composer.json, lo editamos y debajo de "type" le añadimos:
+	"autoload": {
+        	"psr-4": {
+            		"MVC\\" : "./",
+            		"Controllers\\" : "./controllers",
+            		"Model\\" : "./models"
+        	}
+    	},
+   Actualizamos los cambios en composer.json con: composer update
+   Se habrá creado la carpeta /vendor y dentro el archivo autoload.php
+
+6- Con Model View Controller, los proyectos se arrancan desde la carpeta public.
+   Nos situamos en la carpeta public con: cd public y ejecutamos el servidor de
+   php desde public con: php -S localhost:3000
+
+
+7- En el archivo /includes/database.php la conexión a la db es:
+	$db = mysqli_connect('localhost', 'root', 'root', 'appsalon_mvc');
+
+
+8 - Para enviar correos dese php. Instalación del paquete phpMailer:
+	composer require phmailer/phpmailer
+    Tras instalar el php/Mailer actualizamos el composer del proyecto, para que el archivo /vendor/autoload.php    cargue el nuevo paquete php/Mailer:
+	composer update
+
+
+
+
+
+	
+

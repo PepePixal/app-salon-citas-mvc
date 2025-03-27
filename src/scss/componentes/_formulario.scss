@@ -1,0 +1,36 @@
+//importacion
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+@use "sass:color";
+
+.formulario {
+    margin-top: 4rem;
+    width: 100%;
+}
+
+.campo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    label {
+        flex: 0 0 10rem;
+    }
+
+    input {
+        width: 100%;
+        border: none;
+        padding: calc(v.$separacion / 4);
+        border-radius: 1rem;
+
+        //pseudo selector de atributo
+        &:disabled {
+            //background-color: adjust-color(v.$negro, $lightness: 30%); //Deprecated
+            //requiere importar: @use "sass:color";
+            //background-color: color.adjust(v.$negro, $lightness: -20%);
+            color: v.$blanco;
+            cursor: not-allowed;
+        }
+    }
+}
