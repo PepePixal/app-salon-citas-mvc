@@ -48,9 +48,9 @@ function iniciarApp(){
 
 //funcion para mostrar la sección y resaltar el botón, según el botón pulsado
 function mostrarSeccion() {
-    //Antes de mostrar la sección, olcultar la sección que ya tenga la clase '.mostrar'
 
-    //seleciona la sección que ya tenga la clase 'mostrar'
+    //Antes de mostrar la sección, olcultar la sección que ya tenga la clase '.mostrar'.
+    //Seleciona la sección que ya tenga la clase 'mostrar'
     const seccionAnterior = document.querySelector('.mostrar');
     //si se ha encontrado alguna sección con la clase '.mostrar':
     if(seccionAnterior) {
@@ -83,6 +83,7 @@ function mostrarSeccion() {
 
 //funcion que identifica que botón (tab) se está pulsando
 function tabs() {
+
     //asigna a botones, los elemetos html button, dentro de la class .tabs
     const botones = document.querySelectorAll('.tabs button');
 
@@ -310,9 +311,7 @@ function seleccionarFecha() {
             //asigna '', para que la fecha no quede seleccionada en el value
             e.target.value = ''
             //llama función, enviando 'mensaje', y 'tipo de mensaje'
-            mostrarAlerta('Fines de semana no permitidos', 'error');
-        } else {
-            console.log('correcto');
+            mostrarAlerta('Fines de semana no permitidos', 'error', '.formulario');
         }
 
         //obtiene el valor .value de la fecha introducida en el input
@@ -340,7 +339,7 @@ function seleccionarHora() {
             //asigna '', para que la hora no quede seleccionada en el value
             e.target.value = ''
             //llama función, enviando 'mensaje', y 'tipo de mensaje'
-            mostrarAlerta('Horario de 10h a 18h', 'error');
+            mostrarAlerta('Horario de 10h a 18h', 'error', '.formulario' );
         } else {
             //asigna el valor de la hora seleccionada, al atributo hora del objeto cita
             cita.hora = e.target.value;
@@ -351,15 +350,19 @@ function seleccionarHora() {
 
 }
 
-//Muestra alerta en la Crear Nueva Cita. Requiere args 'mensaje' y 'tipo mensaje'
-function mostrarAlerta(mensaje, tipo) {
+//Muestra alerta en la Crear Nueva Cita. Requiere argumentos,
+// 'mensaje', 'tipo mensaje', 'elemento html donde mostrarse' y 
+// 'desaparece' inicializado a true, por si no se recibe
+function mostrarAlerta(mensaje, tipo, elemento, desaparece = true ) {
 
     //comprobar si se está mostrando una alerta previa,
     //probando a seleccionar algún elememto html que ya tenga la clase .alerta asignada
     const alertaPrevia = document.querySelector('.alerta');
     //si se ha podido seleccionar algún elemento html con la clase .alerta,
-    //significa que ya se está mostrando una alerta, return para no continuar 
-    if(alertaPrevia) return;
+    //significa que ya se está mostrando una alerta, la eliminamos 
+    if(alertaPrevia) {
+        alertaPrevia.remove();
+    };
 
     //crea elemento html div y lo asigna a alerta
     const alerta = document.createElement('DIV');
@@ -370,31 +373,117 @@ function mostrarAlerta(mensaje, tipo) {
     //agreta clase al div, recibida como param en tipo, para estilo .scss
     alerta.classList.add(tipo); 
 
-    //selecciona elemento html con class .formulario
-    const formulario = document.querySelector('.formulario');
+    //selecciona elemento html con class igual al valor de elemento, recibido como argumento
+    const referencia = document.querySelector(elemento);
     //inyecta el div alerta en el formulario, de cita/index.php
-    formulario.appendChild(alerta);
+    referencia.appendChild(alerta);
 
-    //elimina la alerta pasdos 3 segundos
-    setTimeout(() => {
-        alerta.remove();
-    }, 3000 );
+    //si no se recibe el argumento desaparece, por defecto es true.
+    //Si desaparece es true:
+    if(desaparece) {
+        //elimina la alerta pasdos 3 segundos
+        setTimeout(() => {
+            alerta.remove();
+        }, 3000 );
+    }
 }
 
 //Mostrar resumen de información antes de enviar la cita
 function mostrarResumen() {
 
     //selecciona elemento html con class .contenido-resumen y lo asigna a resumen
-    const resumen = document.querySelector('.constenido-resumen');
-    //Comprobar si hay valores vacios '' en los propiedades del objeto cita.
+    const resumen = document.querySelector('.contenido-resumen');
+
+    //Primero limpiar el contenido que pueda tener el div .contenido-resumen.
+    //Mientras el elemento html resumen (.contenido-resume) tenga un nodo hijo...
+    while (resumen.firstChild) {
+        //elimina de resumen el primer nodo hijo, enviado como argumento,
+        //sucesivamente hasta eliminar todos los nodos hijos
+        resumen.removeChild(resumen.firstChild);
+    }
+
+    //Comprobar si hay valores vacios '' en los propiedades del objeto cita o || si la propiedad
+    //arreglo servicios está vacio, .length = 0 elementos.
     //El método para objetos Object.values( objeto_a_iterar), itera las propiedades del objeto,
     //retornando un arreglo indexado con los valores de las propiedades,
     //el método .includes(valor_a_buscar), comprueba si entre los valores se incluye el valor buscado
-    if( Object.values(cita).includes('') ) {
-        console.log('faltan datos en la cita');
-    } else {
-        console.log('DTOS cita completados');
-    }
+    if( Object.values(cita).includes('') || cita.servicios.length === 0 ) {
+        //llama método enviando todos los argumentos.
+        mostrarAlerta('Faltan Servicios, Fecha u Hora', 'error', '.contenido-resumen', false);
+        //parar aquí el código, para no poner todo el código que falta en un else.
+        return;
+    } 
 
+    //Cabecera para Resumen Servicios
+    const headingServicios = document.createElement('H4');
+    headingServicios.textContent = 'Resumen de Servicios';
+    //Inyecta en el elemento html div .contenido-resumen, guardado en resumen
+    resumen.appendChild(headingServicios);
+
+    //En este punto del código ya tenmos información en todos los atributos del objeto cita,
+    //Aplicamos destructuring para manipular los atributos como variables independientes,  
+    //recordando que servicios es un arreglo indexado:
+    const { nombre, fecha, hora, servicios } = cita;
+
+    //La propiedad servicios es un arreglo indexado de objetos,
+    //iteramos el arreglo y por cada objeto servicio:
+    servicios.forEach( servicio => {
+        //como cada servicio es un objeto, lo podemos destructurar
+        const { id, precio, nombre } = servicio;
+        //crea un div para cada servicio
+        const contenedorServicio = document.createElement('DIV');
+        //agrega clase al contenedor, para estilo .scss
+        contenedorServicio.classList.add('contenedor-servicio');
+
+        //crea un párrafo para cada servicio
+        const textoServicio = document.createElement('P');
+        //agrega el valor de la var destructurada al párrfo
+        textoServicio.textContent = nombre;
+
+        const precioServicio = document.createElement('P');
+        precioServicio.innerHTML = `<span>Precio: </span>${precio} €`;
+
+        //agrega los párrafos al contenedor div
+        contenedorServicio.appendChild(textoServicio);
+        contenedorServicio.appendChild(precioServicio);
+
+        //Inyecta en el elemento html div .contenido-resumen, guardado en resumen
+        resumen.appendChild(contenedorServicio);
+    });
+
+    //Cabecera para Resumen Cita
+    const headingCita = document.createElement('H4');
+    headingCita.textContent = 'Resumen de Servicios y Cita';
+    //Inyecta en el elemento html div .contenido-resumen, guardado en resumen
+    resumen.appendChild(headingCita);
+
+    //Crea elemento html párrfo P
+    const nombreCliente = document.createElement('P');
+    //Agrega contenido al párrafo, con template string `` texto y variable
+    nombreCliente.innerHTML = `<span>Nombre: </span>${nombre}`;
+
+    //** Formatear fecha español, antes de mostrar, COMPLICADO EXPLICAR
+    //Solo cambia el aspecto, NO cambia el formato original del dato fecha para la DB.
+    const fechaObj = new Date(fecha);
+    const mes = fechaObj.getMonth();
+    const dia = fechaObj.getDate();
+    const year = fechaObj.getFullYear();
+    const fechaUTC = new Date( Date.UTC(year, mes, dia));
+    const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+    const fechaFormateada = fechaUTC.toLocaleDateString('es-ES', opciones);
+    //** FIN script fecha español... */
+
+    //Crea elemento html párrfo P
+    const fechaCita = document.createElement('P');
+    //Agrega contenido html al párrafo, con la var fechaFormateada
+    fechaCita.innerHTML = `<span>Fecha: </span>${fechaFormateada}`;
+
+    const horaCita = document.createElement('P');
+    horaCita.innerHTML = `<span>Hora: </span>${hora} horas`;
+
+    //Inyecta en el elemento html div .contenido-resumen, guardado en resumen
+    resumen.appendChild(nombreCliente);
+    resumen.appendChild(fechaCita);
+    resumen.appendChild(horaCita);
 
 }

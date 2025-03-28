@@ -58,8 +58,8 @@
 			////layout
 				* _citas.scss - estilos para \views\cita\index.php
 				* _index.scss - índice de archivos .scss de la carpeta /layout con @forward
+				* _resumen.scss - estilos para \views\cita\index.php
 				* _servicios.scss - estilos para \views\cita\index.php
-
 				* _UI.scss - setilos generales
 
 
