@@ -1,3 +1,3 @@
 # Proyecto de citas Salón Peluquería
 
-Proyecto peluqueria con citas
+Proyecto citas actualizado 28/03/2025
