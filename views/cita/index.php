@@ -50,6 +50,9 @@
                     id="hora"
                     type="time">
             </div>
+
+            <!-- input typo oculto para poder obtener el id del usuario desde el $_POST -->
+            <input type="hidden" id="id" value="<?php echo $id; ?>" >
         </form>
         
     </div>

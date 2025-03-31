@@ -14,9 +14,10 @@ class CitaController {
         //podemos iniciar sesion, para obtener datos del usuario, en $_SESSION
         session_start();
 
-        //llama met render() vistas, enviando vista y arreglo
+        //llama met render() vistas, enviando vista y arreglo asoc.
         $router->render('cita/index', [
             'nombre' => $_SESSION['nombre'],
+            'id' => $_SESSION['id']
         ]);
     }
 

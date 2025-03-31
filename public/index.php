@@ -36,7 +36,10 @@ $router->get('/confirmar-cuenta', [LoginController::class, 'confirmar']);
 $router->get('/cita', [CitaController::class, 'index']);
 
 // API de citas
+//obtiene los servcicios de la BD y los convierte a JSON 
 $router->get('/api/servicios', [APIController::class, 'index']);
+//obtiene los datos del formulario citas FormData() y los convierte a JSOM
+$router->post('/api/citas', [APIController::class, 'guardar']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

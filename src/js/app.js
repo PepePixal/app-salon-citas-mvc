@@ -7,6 +7,7 @@ const pasoFinal = 3
 //Variable tipo objeto para cita. Los objetos en js
 //se pueden reescribir aunque esten declarados con const.
 const cita = {
+    id: '',
     nombre: '',
     fecha: '',
     hora: '',
@@ -35,6 +36,8 @@ function iniciarApp(){
     //consulta la API en el backend de PHP
     consultarAPI();
 
+    //Agrega el id del clinte al atributo del objeto cita
+    idCliente();
     //Agrega el nombre del clinte al atributo del objeto cita
     nombreCliente();
     //Agrega la fecha de la cita al atributo del objeto cita
@@ -48,7 +51,6 @@ function iniciarApp(){
 
 //funcion para mostrar la sección y resaltar el botón, según el botón pulsado
 function mostrarSeccion() {
-
     //Antes de mostrar la sección, olcultar la sección que ya tenga la clase '.mostrar'.
     //Seleciona la sección que ya tenga la clase 'mostrar'
     const seccionAnterior = document.querySelector('.mostrar');
@@ -62,7 +64,6 @@ function mostrarSeccion() {
     const seccion = document.querySelector(`#paso-${paso}`);
     //agrega la clase 'mostrar', a las sección seleccionada
     seccion.classList.add('mostrar');
-
 
     //**Resaltar el botón (tab) de la sección que se etá mostrando:
     
@@ -83,7 +84,6 @@ function mostrarSeccion() {
 
 //funcion que identifica que botón (tab) se está pulsando
 function tabs() {
-
     //asigna a botones, los elemetos html button, dentro de la class .tabs
     const botones = document.querySelectorAll('.tabs button');
 
@@ -168,7 +168,6 @@ function paginaSiguiente() {
 
 //función asíncrona con awaits para consultar la API de servicios, en el backend de PHP
 async function consultarAPI() {
-
     //try chatch, ejecuta el código y si hay error lo captura,
     //sin parar el resto de código de la función.
     try {
@@ -280,7 +279,11 @@ function seleccionarServicio(servicio) {
         //agrega la clase 'seleccionado' al elemento html seleccionado en divServicio
         divServicio.classList.add('seleccionado');  //para aplicar estilo .scss
     }
+}
 
+//obtine el id del cliente y lo agrega al atributo del objeto cita
+function idCliente() {
+    cita.id = document.querySelector('#id').value;
 }
 
 //obtine el nobre del cliente y lo agrega al atributo del objeto cita
@@ -289,8 +292,6 @@ function nombreCliente() {
     //en el archivo /cita/index.php, desde donde se importa el script app.js
     // y asigna el value a la propiedad nombre del objeto cita
     cita.nombre = document.querySelector('#nombre').value;
-
-    //console.log(cita.nombre);
 }
 
 //Obtiene y Agrega la fecha de la cita al atributo del objeto cita
@@ -344,10 +345,7 @@ function seleccionarHora() {
             //asigna el valor de la hora seleccionada, al atributo hora del objeto cita
             cita.hora = e.target.value;
         }
-
-
     })
-
 }
 
 //Muestra alerta en la Crear Nueva Cita. Requiere argumentos,
@@ -462,7 +460,7 @@ function mostrarResumen() {
     //Agrega contenido al párrafo, con template string `` texto y variable
     nombreCliente.innerHTML = `<span>Nombre: </span>${nombre}`;
 
-    //** Formatear fecha español, antes de mostrar, COMPLICADO EXPLICAR
+    //** Formatear fecha español, antes de mostrar, COMPLICADO EXPLICAR...
     //Solo cambia el aspecto, NO cambia el formato original del dato fecha para la DB.
     const fechaObj = new Date(fecha);
     const mes = fechaObj.getMonth();
@@ -471,7 +469,7 @@ function mostrarResumen() {
     const fechaUTC = new Date( Date.UTC(year, mes, dia));
     const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
     const fechaFormateada = fechaUTC.toLocaleDateString('es-ES', opciones);
-    //** FIN script fecha español... */
+    //** ... FIN script fecha español */
 
     //Crea elemento html párrfo P
     const fechaCita = document.createElement('P');
@@ -485,5 +483,58 @@ function mostrarResumen() {
     resumen.appendChild(nombreCliente);
     resumen.appendChild(fechaCita);
     resumen.appendChild(horaCita);
+
+    //Botón para crear una cita
+    const botonReservar = document.createElement('BUTTON');
+    //Agragar clase para estilo scss
+    botonReservar.classList.add('boton');
+    botonReservar.textContent = 'Reservar Cita';
+    //asigna la funcion reservarCita, al evento onclick del elemento
+    botonReservar.onclick = reservarCita;
+    resumen.appendChild(botonReservar);
+}
+
+//Función asíncrona, obtiene los datos y servicios de la cita,
+//genera un FormData con los datos y servicios,
+//envaía la info en peticion fetch() con método POST
+async function reservarCita() {
+    //destructuración le las propiedades del objeto cita, en variables
+    const { nombre, fecha, hora, id, servicios} = cita;
+
+    //la var servicios es un arreglo con los servicios seleccionados por el user,
+    //solo requerimos los id de los servicios, iteramos servcios con .map(), por
+    //cada servicio obtenemos su id y los asignamos al arreglo idServicios
+    const idServicios =  servicios.map( servicio => servicio.id )
+
+    //nueva instancia de FormData() que retorna un objeto vacio FormData{},
+    //donde agregaremos datos con pares clave-valor, guarda en datos
+    const datos = new FormData();
+    //agrega 'propiedades' y 'valores', al objeto datos
+    datos.append('fecha', fecha);
+    datos.append('hora', hora);
+    datos.append('usuarioId', id);
+    datos.append('servicios', idServicios);
+
+    //como es un prototipo de objeto, para poder comprobar el contenido con console.log:
+    //console.log([...datos]);
+    
+    //Peciticion hacia la api en la url
+    const url = 'http://localhost:3000/api/citas';
+
+    //petición fetch con método POST a la api en la url citas, con los datos en body
+    const respuesta = await fetch( url, {
+        method: 'POST',
+        body: datos
+    });
+
+    console.log(respuesta);
+
+    //fetch() retoran a respuesta, información de la conexión y un Prototype con el método json(),
+    //el método .json() en respuesta, retorna un arreglo indexado de objetos,
+    //que corresponden a los datos de la cita.
+    const resultado = await respuesta.json();
+
+
+    console.log(resultado);
 
 }
