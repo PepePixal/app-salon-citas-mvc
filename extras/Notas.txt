@@ -70,6 +70,12 @@ Se creará automáticamente la carpeta /node_modules y el archivo package-lock.j
 	composer update
 
 
+vid.-521
+Alertas tipo pop-up con JS desde https://sweetalert2.github.io/
+No requiere librerías, se puede instalar desde su CDN Content Delivery Network) significa que en lugar de descargar archivos directamente a tu computadora o servidor local, los utilizas desde una red distribuida de servidores alrededor del mundo.
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 
 

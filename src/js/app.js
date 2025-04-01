@@ -514,27 +514,49 @@ async function reservarCita() {
     datos.append('hora', hora);
     datos.append('usuarioId', id);
     datos.append('servicios', idServicios);
-
     //como es un prototipo de objeto, para poder comprobar el contenido con console.log:
     //console.log([...datos]);
-    
-    //Peciticion hacia la api en la url
-    const url = 'http://localhost:3000/api/citas';
 
-    //petición fetch con método POST a la api en la url citas, con los datos en body
-    const respuesta = await fetch( url, {
-        method: 'POST',
-        body: datos
-    });
+    //Peciticion hacia la api en la url, en un try catch, por si hay algún error
+    try {
+        //definir la url a donde se enviará la petición HTTP
+        const url = 'http://localhost:3000/api/citas';
+        //Los datos de FormData() se envian a la url (api), en el body de la petición HTTP
+        //tipo POST
+        const respuesta = await fetch( url, {
+            method: 'POST',
+            body: datos
+        });
+        //obtiene la respuesta del servidor en formato JSON y se asigna a resultado
+        const resultado = await respuesta.json();
+        //console.log(resultado);
 
-    console.log(respuesta);
+        if (resultado.resultado === true ){
+            //pop-up personalizado
+            //insertamos el script copiado de la página https://sweetalert2.github.bio,
+            //requiere importar <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+            //en el html de la página donde queramos mostrar la ventana emergente o pop-up
+            Swal.fire({
+                icon: "success",
+                title: "Cita Creada",
+                text: "Tu cita ha sido registrada correctamente",
+                button: 'OK'
 
-    //fetch() retoran a respuesta, información de la conexión y un Prototype con el método json(),
-    //el método .json() en respuesta, retorna un arreglo indexado de objetos,
-    //que corresponden a los datos de la cita.
-    const resultado = await respuesta.json();
+            //una vez pulsado el botón ok
+            }).then (()=> {
+                //recargar la página
+                window.location.reload();
+            });
+        }
 
-
-    console.log(resultado);
+    } catch (error) {
+        //en caso de que se haya producico un error en la conexión a la url api
+        //ventana emergente o pop-up, personalizado
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "LA CITA NO SE HA GUARDADO",
+        });
+    }
 
 }

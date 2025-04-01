@@ -93,7 +93,7 @@ class ActiveRecord {
     // Registros - CRUD
     public function guardar() {
         $resultado = '';
-        //si si el id no es null
+        //si el id no es null
         if(!is_null($this->id)) {
             // actualizar
             $resultado = $this->actualizar();

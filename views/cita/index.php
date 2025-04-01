@@ -71,10 +71,16 @@
 
 </div>
 
-<!-- instrucción de importacion de script, que se imprimirá en el html de layout.php,
+<!-- instrucción de importacion de scripts, que se imprimiran en el html de layout.php,
 cuando reciba esta vista index.php como contenido en $contenido -->
 <?php
 
-    $script = "<script src='build/js/app.js'></script>";
+        //script para la ventana de aviso, personalizada, de "cita ragistrada (en app.js),
+        //comprobar el script sweetalert2, en la consola del navegador ejecuta swal (objeto).
+        //script para app.js
+    $script = "
+        <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+        <script src='build/js/app.js'></script>
+    ";
 
 ?>
