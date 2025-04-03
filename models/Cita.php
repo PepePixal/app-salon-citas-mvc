@@ -5,7 +5,7 @@ namespace Model;
 class Cita extends ActiveRecord {
     //indica la tabla para las querys
     protected static $tabla = 'citas';
-    //arreglo asoc. para el mapeo de las columnas de la tabla
+    //arreglo para el mapeo de las columnas de la tabla
     protected static $columnasDB = [ 'id', 'fecha', 'hora', 'usuarioId'];
 
     //definicion de los atributos del objeto cita

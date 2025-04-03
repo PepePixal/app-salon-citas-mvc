@@ -149,6 +149,7 @@ class ActiveRecord {
 
         // Resultado de ejecutar la consulta
         $resultado = self::$db->query($query);
+        //retorna resultado y el id del elemento insertado
         return [
            'resultado' =>  $resultado,
            'id' => self::$db->insert_id

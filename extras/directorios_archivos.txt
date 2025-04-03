@@ -16,6 +16,7 @@
 	//models
 		* ActiveRecord.php -  modelo padre del que extienden otros modelos
 		* Cita.php - modelo para interactuar con la tabla citas de la DB.
+		* CitaServicio.php - modelo para interactuar con la tabla citasservicios de la DB.
 		* Servicio.php - modelo para interactuar con la tabla servicios de la DB.
 		* Usuario.php - modelo para interactuar con la tabla usuarios de la DB.
 

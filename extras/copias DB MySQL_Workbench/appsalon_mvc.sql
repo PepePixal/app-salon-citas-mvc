@@ -1,4 +1,6 @@
--- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `appsalon_mvc` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `appsalon_mvc`;
+-- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
 --
 -- Host: localhost    Database: appsalon_mvc
 -- ------------------------------------------------------
@@ -7,7 +9,7 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -126,10 +128,6 @@ LOCK TABLES `usuarios` WRITE;
 INSERT INTO `usuarios` VALUES (6,'Admin','Admin','admin@admin.com','$2y$10$HhOgL3tlAyTXKV.dSQt0d.mhHd8oyJlfRrUdrG6ctxQzQkAGQP7em','123456789',1,1,''),(7,'Cliente','Sin confirmar','cliente@sinconfirmar.com','$2y$10$e/oB.bLO14sVVwZPYpDFeOjwXeeE/7yQUhpCLsg5JGG8XfP6gllf6','321654987',0,0,'67d2c9e57d688'),(9,'Cliente','Confirmado','cliente@confirmado.com','$2y$10$S9yzMcV99TcSd3I4CCJIuuDyPjTxZ5CtyyktlRLt23fDPufsSJXS6','456654878',0,1,'');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'appsalon_mvc'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -140,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-01 12:33:04
+-- Dump completed on 2025-04-01 12:42:56
