@@ -83,7 +83,12 @@ class LoginController {
     }
 
     public static function logout() {
-        echo 'Desde Logout Controller';
+        //reabrimos sesión
+        session_start();
+        //cerramos sesión asignando arreglo vacio a la super glob $_SESSION
+        $_SESSION = [];
+        //redirigimos al inicio raiz 
+        header('Location: /');
     }
     
     public static function olvide(Router $router) {

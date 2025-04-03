@@ -24,7 +24,26 @@
         margin: 0 auto;
         padding: 3rem 0;
     }
+}
 
-    
+.barra {
+    margin: v.$separacion 0;
 
+    @include m.tablet{
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+    }
+
+    p {
+        color: v.$azul;
+        text-align: center;
+    }
+    .boton {
+        @include m.boton(v.$negro, v.$blanco);
+    }
+
+    a.boton {
+        margin: 2rem 0;
+    }
 }

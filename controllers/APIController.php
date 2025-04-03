@@ -67,7 +67,8 @@ class APIController {
         //Retornamos resultado JSON.
         //La función de php json_encode(), transforma el arreglo asoc con la info de $resultado,
         //a formato JSON y lo retorna al app.js JavaScript
-        echo json_encode(['resultado' => $resultado]);
+        //echo json_encode(['resultado' => $resultado]);
+        echo json_encode($resultado);
         
     }
 }

@@ -529,7 +529,7 @@ async function reservarCita() {
         });
         //obtiene la respuesta del servidor en formato JSON y se asigna a resultado
         const resultado = await respuesta.json();
-        //console.log(resultado);
+        console.log(resultado);
 
         if (resultado.resultado === true ){
             //pop-up personalizado

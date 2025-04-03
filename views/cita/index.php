@@ -1,13 +1,18 @@
 <h1 class="nombre-pagina">Crear Nueva Cita</h1>
-<p class="descripcion-pagina">Selecciona tus servicos y coloca tus datos</p>
 
+<!-- la var $nombre la estamos pasando desde render() de CitaController.php -->
+<div class="barra">
+    <p>Hola: <?php echo $nombre ?? '';?> </p>
+    <a class="boton" href="/logout">Cerrar Sesión</a>
+</div>
+
+<p class="descripcion-pagina">Selecciona tus servicos y coloca tus datos</p>
 <div id="app">
     <!-- navegacion con atributo personalizado data-paso -->
     <nav class="tabs">
         <button type="button" data-paso="1" class="actual">Servicios</button>
         <button type="button" data-paso="2">Información Cita</button>
         <button type="button" data-paso="3">Resumen</button>
-
     </nav>
 
     <div id=paso-1 class="seccion">
