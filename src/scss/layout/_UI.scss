@@ -51,3 +51,16 @@
         margin: 2rem 0;
     }
 }
+
+.barra-servicios {
+    @include m.tablet{
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+    }
+
+    .boton {
+        margin: 0 0 1rem 0;
+        padding: 1rem;
+    }
+}

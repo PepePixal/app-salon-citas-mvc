@@ -69,6 +69,26 @@ class APIController {
         //a formato JSON y lo retorna al app.js JavaScript
         //echo json_encode(['resultado' => $resultado]);
         echo json_encode($resultado);
-        
+    }
+
+    public static function eliminar() {
+        //valida que estamos usando un método POST
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //obtinene el id de la cita, de la super global $_POST
+            $id = $_POST['id'];
+
+            //debuguear($id);
+
+            //llama método find() que buscar por id, 
+            //basado en modelo de la clase Cita que extiende de ActiveRecord 
+            $cita = Cita::find($id);
+
+            //llama método eliminar de Active Record
+            $cita->eliminar();
+
+            //redirige a la página actual donde se encuentra el usuario,
+            //la url se obtiene de $_SERVER['HTTP_REFERER']
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+        }
     }
 }

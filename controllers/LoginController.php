@@ -51,7 +51,7 @@ class LoginController {
 
                         //Redirecciona, según el usuario es tipo admin, o no
                         //si el valor de la propiedad admin es = 1, es tipo Administrador
-                        if($usuario->admin === '1') {
+                        if($usuario->admin === "1") {
                             //agrega elemento admin a $_SESSION, con el valor de admin ("1") o null
                             $_SESSION['admin'] = $usuario->admin ?? null;
                             //redirección al panel de administrador

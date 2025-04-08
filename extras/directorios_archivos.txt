@@ -8,6 +8,7 @@
 		* APIController.php - controlador con la clase para la API de servicios
 		* CitaController.php - controlador con la clase para las citas
 		* LoginController.php - controlador con la clase para el login del usuario
+		* ServicioController.php - controlador con la clase para gestión de servicios
 
 	//includes
 		* app.php - 
@@ -69,7 +70,7 @@
 				* _UI.scss - setilos generales
 
 
-			* app.scss - índice de las carpetas de estilo en scss con @use
+			* app.scss - índice de las carpetas de estilo en scss, con @use
 
 	//views
 		* layout.php - vista página inicial, donde se insertan las views
@@ -88,9 +89,17 @@
 		//cita
 			* cita.php - vista 
 
+		//servicios
+			* actualizar.php - vista actualizar servicios con formulario, para el administrador
+			* crear.php - vista crear servicios con formulario, para el administrador
+			* formulario.php - formulario para crear y actualizar servicios
+			* index.php - vista página todos servicios, para el administrador
+ 
+
 		//templates
 			* alertas.php - vista para insertar las alertas de validación.
 			* barra.php - contenedor div con Nombre Usuario y Cerrar Sesión.
+
 
 	* router.php - comprueba la rutas definidas y llama a sus controllers
 

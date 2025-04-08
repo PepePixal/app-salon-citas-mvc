@@ -1,9 +1,9 @@
 <h1 class="nombre-pagina">Panel de Administración</h1>
-<!-- la var $nombre la estamos pasando desde render() de CitaController.php -->
-<div class="barra">
-    <p>Hola: <?php echo $nombre ?? '';?> </p>
-    <a class="boton" href="/logout">Cerrar Sesión</a>
-</div>
+
+<!-- Inserta el contenedor con el nombre de usuario y Cerrar Sesión -->
+<?php  
+    include_once __DIR__ . '/../templates/barra.php';
+?>
 <h4>Buscar Citas</h4>
 
 <div id="busqueda">
@@ -72,6 +72,13 @@
                     if (esUltimo($actual, $proximo)) { 
                 ?>
                         <p class="total">Total Servicios: <span><?php echo $total ." €"; ?></span></p>
+
+                        <!-- form eliminar la cita -->
+                        <form action="/api/eliminar" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $cita->id; ?>">
+                            <input type="submit" class="boton-eliminar" value="Eliminar">
+                        </form>
+
             <?php
                     }
             } //...fin foreach

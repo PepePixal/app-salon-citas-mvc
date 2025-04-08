@@ -14,6 +14,8 @@ class AdminController {
         //abrimos sesión para obtener los datos de la $_SESSION
         session_start();
 
+        isAdmin();
+
         //la super global $_GET, contiene un arreglo con el querystring
         //enviado en la url, por la función de js buscadorPorFecha() en buscador.js
         //debuguear($_GET);

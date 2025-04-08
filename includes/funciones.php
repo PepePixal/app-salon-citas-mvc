@@ -35,3 +35,13 @@ function isAuth() : void {
     }
 }
 
+//Función para comprobar si el ususario autenticado es tipo admin
+function isAdmin(): void {
+    //si el arreglo asoc $_SESSION en su atributo 'admin',
+    //NO ! está declarado o es NO ! es diferente a null (es null)
+    if(!isset($_SESSION['admin'])) {
+        //redirige al usuario a la página inicial raiz
+        header('Location: /');
+    }
+}
+
