@@ -4,6 +4,7 @@
 		* Email.php - clase con métodos para enviar email con php	
 
 	//controllers
+		* AdminController.php - controlador con la clase para panel administrador
 		* APIController.php - controlador con la clase para la API de servicios
 		* CitaController.php - controlador con la clase para las citas
 		* LoginController.php - controlador con la clase para el login del usuario
@@ -15,6 +16,7 @@
 
 	//models
 		* ActiveRecord.php -  modelo padre del que extienden otros modelos
+		* AdminCita.php - modelo basado en las columnas de la consulta SQL
 		* Cita.php - modelo para interactuar con la tabla citas de la DB.
 		* CitaServicio.php - modelo para interactuar con la tabla citasservicios de la DB.
 		* Servicio.php - modelo para interactuar con la tabla servicios de la DB.
@@ -37,7 +39,8 @@
 			* imagenes originales
 
 		///js
-			* app.js - javascript original modificable
+			* app.js - js crear nueva cita en /cita
+			* buscador.js - js buscador citas por fecha, en /admin
 
 		///scss
 			////base
@@ -58,6 +61,7 @@
 				* _tabs.scss - estilo scss para los tabs \views\cita\index.php
 
 			////layout
+				* _admin.scss - estilos para views\admin\index.php
 				* _citas.scss - estilos para \views\cita\index.php
 				* _index.scss - índice de archivos .scss de la carpeta /layout con @forward
 				* _resumen.scss - estilos para \views\cita\index.php
@@ -69,6 +73,9 @@
 
 	//views
 		* layout.php - vista página inicial, donde se insertan las views
+
+		//admin
+			* index.php - vista panel administrador
 
 		//auth
 			* confirmar-cuenta.php - vista mensaje confirmación o denegación, nueva cuenta usuario
@@ -82,7 +89,8 @@
 			* cita.php - vista 
 
 		//templates
-			* alertas.php - vista para insertar las alertas de validación,
+			* alertas.php - vista para insertar las alertas de validación.
+			* barra.php - contenedor div con Nombre Usuario y Cerrar Sesión.
 
 	* router.php - comprueba la rutas definidas y llama a sus controllers
 

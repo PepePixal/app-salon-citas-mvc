@@ -3,9 +3,10 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use MVC\Router;
-use Controllers\CitaController;
-use Controllers\LoginController;
 use Controllers\APIController;
+use Controllers\CitaController;
+use Controllers\AdminController;
+use Controllers\LoginController;
 
 //instancia de la clase Router
 $router = new Router();
@@ -34,6 +35,7 @@ $router->get('/confirmar-cuenta', [LoginController::class, 'confirmar']);
 
 //** Rutas Crear Citas - Area Privada
 $router->get('/cita', [CitaController::class, 'index']);
+$router->get('/admin', [AdminController::class, 'index'] );
 
 // API de citas
 //obtiene los servcicios de la BD y los convierte a JSON 

@@ -131,8 +131,16 @@ class ActiveRecord {
     public static function where($columna, $valor) {
         $query = "SELECT * FROM " . static::$tabla  ." WHERE {$columna} = '{$valor}'";
         $resultado = self::consultarSQL($query);
-        //la funcion php array_shift() elimina el primer elemento del arreglo y lo devuelve
+        //la funcion php array_shift() elimina el primer elemento del arreglo, retorna,
+        // y reorganiza los índices de los elementos restantes.
         return array_shift( $resultado ) ;
+    }
+
+    //Consulta Plana de SQL. Para citas según fecha, para el Administrador
+    public static function SQL($query) {
+        $resultado = self::consultarSQL($query);
+        //retorna todos los resultados
+        return $resultado;
     }
 
     // crea un nuevo registro

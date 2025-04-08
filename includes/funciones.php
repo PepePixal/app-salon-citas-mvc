@@ -13,6 +13,16 @@ function s($html) : string {
     return $s;
 }
 
+//comprueba si es el último servicio de la cita, 
+function esUltimo(string $actual, string $proximo): bool {
+    //si el valor de $actual de diferente al de $proximo,
+    //siginifica que es el último servicio de la cita
+    if( $actual !== $proximo ){
+        return true;
+    }
+    return false;
+}
+
 //Función para revisar qeu el usuario este autenticado.
 //En el LoginController, tenemos $_SESSION['login'] = true;
 //Definimos función isAuth() : void .. que no retorna nada

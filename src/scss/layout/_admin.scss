@@ -1,0 +1,25 @@
+@use 'base/variables' as v;
+
+.citas {
+    
+    list-style: none;
+    padding: 0;
+    
+    li {
+        border-top: 1px solid v.$azul;
+        p {
+            color: v.$azul;
+        }
+        span {
+            color: v.$blanco;
+        }
+    }
+    
+    p.total {
+        color: v.$azul;
+        span {
+            color: v.$blanco;
+        }
+    }
+
+}

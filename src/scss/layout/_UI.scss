@@ -20,9 +20,13 @@
     }
 
     .app {
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
-        padding: 3rem 0;
+        padding: 3rem 3rem;
+        @include m.tablet {
+            overflow: scroll;
+            overflow-x: hidden;
+        }
     }
 }
 

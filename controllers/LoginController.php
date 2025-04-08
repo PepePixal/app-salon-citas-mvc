@@ -3,7 +3,7 @@
 // pronombre auto, único para nuestra class
 namespace Controllers;
 
-//para instanciar la class Router sin el namespace MVC
+//para instanciar las class Router sin el namespace \
 use MVC\Router;
 use Classes\Email;
 use Model\Usuario;

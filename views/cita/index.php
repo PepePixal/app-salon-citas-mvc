@@ -1,10 +1,9 @@
 <h1 class="nombre-pagina">Crear Nueva Cita</h1>
 
-<!-- la var $nombre la estamos pasando desde render() de CitaController.php -->
-<div class="barra">
-    <p>Hola: <?php echo $nombre ?? '';?> </p>
-    <a class="boton" href="/logout">Cerrar Sesión</a>
-</div>
+<!-- Inserta el contenedor con el nombre de usuario y Cerrar Sesión -->
+<?php  
+    include_once __DIR__ . '/../templates/barra.php';
+?>
 
 <p class="descripcion-pagina">Selecciona tus servicos y coloca tus datos</p>
 <div id="app">
