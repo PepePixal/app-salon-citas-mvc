@@ -21,4 +21,23 @@ class Servicio extends ActiveRecord {
         $this->precio = $args['precio'] ?? '';
     }
 
+    //valida los campos del formulario enviados con POST, retornando $alertas
+    public function validar() {
+        if(!$this->nombre){
+            //agrega al arreglo $alertas, la llave error y el mensaje como valor,
+            //usamos self:: porque $alertas está definida en el model ActiveRecord.
+            self::$alertas ['error'][] = 'El nombre del servicio es obligatorio';
+        }
+        if(!$this->precio){
+            self::$alertas ['error'][] = 'El precio del servicio es obligatorio';
+        }
+        //valida si el precio no es un número
+        if(!is_numeric($this->precio)){
+            self::$alertas ['error'][] = 'El precio no es válido';
+        }
+
+        //retorna la var $alertas, para enviarlas en el render()
+        return self::$alertas;
+    }
+
 }

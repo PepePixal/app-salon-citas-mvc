@@ -1,7 +1,6 @@
 @use 'base/variables' as v;
 
 .citas {
-    
     list-style: none;
     padding: 0;
     
@@ -21,5 +20,21 @@
             color: v.$blanco;
         }
     }
+
+}
+
+.servicios {
+    //directiva de sass para heredar los estilos de .citas
+    @extend .citas;
+
+   .acciones {
+    margin: 0;
+   }
+
+   .boton,
+   .boton-eliminar {
+    margin: 0.5rem 0rem;
+    padding: 1rem;
+   }
 
 }
