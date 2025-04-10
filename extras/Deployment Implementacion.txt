@@ -1,0 +1,23 @@
+Deployment o Despliegue de un proyecto
+
+Una vez terminado el proyecto y comprobado que todo va bien,
+URLS, autenticación de usuarios, etc, es importante:
+- En el desarrollo moderno de php ser requiere el archivo composer.json.
+- Tener el repositorio del proyecto en Git. Solo los archivos necesarios.
+- No es necesario subir todos los archivos al servidor.
+- GENERAR LAS VARIABLES DE ENTORNO. Una variable de entorno es un valor
+que es diferente en el ambiente de desarrollo y producción.
+Sirven para ocultar credenciales de la DB, del servidor de correo, etc.
+Requieren instalar la dependencia vlucas/phpdotenv.
+Lo podemos instalar con composer, con el comando:
+composer requiere vlucas/phpdotenv
+
+Guía para subir el proyecto a GitHub.com
+https://blogjc.vercel.app/post/php-domcloud
+
+Guía para desplegar proyectos PHP, PHP MVC y/o Laravel
+https://blogjc.vercel.app/post/easy-deploy-php-laravel
+
+Alojamiento Cloud gratuito
+1.5 GB of storage free for up to 3 websites.
+https://domcloud.co/

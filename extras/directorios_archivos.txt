@@ -14,6 +14,7 @@
 		* app.php - 
 		* database.php - conexión a la base datos
 		* funciones.php - nuestras funciones personalizadas
+		* .env - archivo con las variables de entorno local
 
 	//models
 		* ActiveRecord.php -  modelo padre del que extienden otros modelos
