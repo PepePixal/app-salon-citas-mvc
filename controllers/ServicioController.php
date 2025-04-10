@@ -10,6 +10,8 @@ class ServicioController {
         //abre sesión para obtener los datos de la $_SESSION
         session_start();
 
+        isAdmin();
+
         //llama metodo static :: all() desde el modelo class Servicio,
         // que retornará todos los servicios encotrados en la tabla servicios
         $servicios = Servicio::all();
@@ -24,6 +26,8 @@ class ServicioController {
     public static function crear(Router $router) { 
         //abre sesión para obtener los datos de la $_SESSION
         session_start();
+
+        isAdmin();
 
         //instancia la class Servicio del Model Servicio, que retorna un objeto vacio
         //y lo asigna a la var $servicio. Para poder enviar en el render()
@@ -62,6 +66,8 @@ class ServicioController {
     
     public static function actualizar(Router $router) {  
         session_start();
+        isAdmin();
+
         //obtiene el id del servicio, que viene en la url, y estará en la $_GET,
         //si $id NO ! es un número, retorna
         if( !is_numeric($_GET['id']) ) return;
@@ -93,10 +99,16 @@ class ServicioController {
         ]);
     }
     
-    public static function eliminar(Router $router) {  
+    public static function eliminar(Router $router) { 
+        session_start();
+        isAdmin();
+        
         //si el tipo de solicitud HTTP al servidor es tipo POST
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+            $id = $_POST['id'];
+            $servicio = Servicio::find($id);
+            $servicio->eliminar();
+            header('Location: /servicios');
         }
     }
 }
