@@ -172,7 +172,10 @@ async function consultarAPI() {
     //sin parar el resto de código de la función.
     try {
         //url donde se encuentra la API
-        const url = 'http://localhost:3000/api/servicios';
+        const url = '/api/servicios';
+        //para proyectos donde el backend y el frontend esten en sitios diferentes:
+        //  const url = `${location.origin}/api/citas`;
+
         //consulta a la API en la url, esperando (await) el resultado,
         const resultado = await fetch(url);
         // Entre toda la iformación retornada por fetch(), en Prototype está el método json(),
@@ -520,7 +523,10 @@ async function reservarCita() {
     //Peciticion hacia la api en la url, en un try catch, por si hay algún error
     try {
         //definir la url a donde se enviará la petición HTTP
-        const url = 'http://localhost:3000/api/citas';
+        const url = '/api/citas';
+        //para proyectos donde el backend y el frontend esten en sitios diferentes:
+        //  const url = `${location.origin}/api/citas`;
+
         //Los datos de FormData() se envian a la url (api), en el body de la petición HTTP
         //tipo POST
         const respuesta = await fetch( url, {

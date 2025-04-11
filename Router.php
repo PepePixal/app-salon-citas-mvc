@@ -28,18 +28,11 @@ class Router
     // si está obtiene su método asociado, protege las rutas que requieran autenticación y 
     // llama al método asociado a las rutas que no requieren autenticación.
     public function comprobarRutas() {
-        
-        //para tener acceso a la superglobal $_SESSION
-        //session_start();
-
-        // Arreglo de rutas protegidas...
-        // $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar'];
-
-        // $auth = $_SESSION['login'] ?? null;
 
         //obtiene la url del la página actual, de la superglobal php $_SERVER,
-        // si no encuentra nada ?? asigna '/'
-        $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        // la función php strtok() ingnora todo lo que hay en la url, a partir de '?',
+        //si no se obtine url le asigna ?? la de la página principal '/', que no aparece en REQUEST_URI
+        $currentUrl = strtok($_SERVER['REQUEST_URI'], '?') ?? '/';
         //obtiene el método de consulta (request), de la superglobal php $_SERVER,
         $method = $_SERVER['REQUEST_METHOD'];
 

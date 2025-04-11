@@ -1,4 +1,6 @@
 @use 'variables' as v;
+//para poder usar color.ajust
+@use 'sass:color';
 
 /** Media Queries **/
 @mixin telefono {
@@ -39,7 +41,9 @@
         width: auto;
     }
     &:hover {
-        background-color: darken( $bgColor, 10% );
+        //requiere @use 'sass:color'
+        background-color: color.adjust( $bgColor, $lightness: -20% );
+        //background-color: darken( $bgColor, 10% );
         cursor: pointer;
     }
 }
