@@ -54,7 +54,7 @@ class AdminController {
         //debuguear($citas);
 
         //llama método render(), enviando archivo vista y arreglo con info
-        $router->render('admin/index', [
+        $router->render('/admin/index', [
             'nombre' => $_SESSION['nombre'] ?? '',
             'citas' => $citas,
             'fecha' => $fecha
