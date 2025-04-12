@@ -48,7 +48,7 @@ class AdminController {
         $consulta .= " ON servicios.id=citasservicios.servicioId ";
         $consulta .= " WHERE fecha =  '$fecha' ";
 
-        //llama al método que hará la consulta, enviando el SQL
+        //llama al método que hará la consulta, enviando el SQL.
         $citas = AdminCita::SQL($consulta);
 
         //debuguear($citas);
